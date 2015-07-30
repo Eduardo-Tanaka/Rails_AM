@@ -20,4 +20,33 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  persons:
+    form:
+      name: "Name"
+      cpf: "CPF"
+      rg: "RG"
+      birth_date: "Birth Date"
+      save: "Save"
+    address_fields:
+      zip_code: "Zip Code"
+      address: "Address"
+      number: "Number"
+      complement: "Complement"
+      nighborhood: "Neighborhood"
+      city: "City"
+      state: "State"
+    phone_fields:
+      phone: "Phone" 
+
+  layouts:
+    header:
+      brand: "Brand"
+      sign_up: "Sign Up"
+      sign_in: "Sign In"
+      account: "Account"
+      sign_out: "Sign Out"
+      edit: "Edit"
+      donation: "Donation"
+      new_donation: "New"
+      list_donation: "List"
+      language: "Language"

@@ -1,0 +1,21 @@
+<% if current_user %>
+  <%= form_for ([@person, @donation, @donation.questions.build]) do |f| %>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <%= f.label :question %>
+        <%= f.text_area :question, rows: 5, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <%= f.submit "Save", class: "btn btn-primary form-control" %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="row">
+    <div class="form-group col-md-12">
+      <p><%= link_to "Log in", user_session_path %> to make a question</p>
+    </div>
+  </div>
+<% end %>

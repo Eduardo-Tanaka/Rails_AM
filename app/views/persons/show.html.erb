@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= @person.name %>
+      </div>
+      <div class="panel-body">
+        <%= @person.cpf %>
+      </div>
+      <div class="panel-footer">
+        <% if @person.birth_date %>
+          <%= @person.birth_date.strftime("%d/%m/%Y") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

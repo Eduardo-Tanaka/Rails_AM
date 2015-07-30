@@ -1,0 +1,86 @@
+<%= form_for([@person, @donation], html: { multipart: true })  do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <% if @donation.errors.any? %>
+        <div class="alert alert-danger">
+          <% @donation.errors.full_messages.each do |e| %>
+            <p><%= e %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-group col-md-12">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 10, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <%= f.radio_button :situation, 'Semi-Novo', checked: true %>
+      <%= label_tag 'donation_situation_semi-novo', 'Semi-Novo' %>
+      <%= f.radio_button :situation, 'Usado' %>
+      <%= label_tag 'donation_situation_usado', 'Usado' %>
+      <%= f.radio_button :situation, 'Quebrado' %>
+      <%= label_tag 'donation_situation_quebrado', 'Quebrado' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <!-- Procurar outro jeito de usar o label com radio button -->
+      <% i = 1 %>
+      <% @categories.each do |category| %>
+        <%= f.radio_button :category_id, category.id %>
+        <%= label_tag 'donation_category_id_'+i.to_s, category.name %>
+        <% i = i + 1 %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <% (@donation.photos.size..5).each do %>
+        <%= file_field_tag "images[]", type: :file, multiple: true %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <% if @donation.photos %>
+        <% @donation.photos.each do |photo| %>
+          <div class="col-sm-4 col-md-3 thumbnail">
+            <%= link_to (image_tag(photo.image_url(:thumbnail), class:"img-responsive")), photo.image.url %>
+            <%= link_to image_person_donation_path(@person, @donation, photo), method: :put, data: { confirm: "delete?" } do %>
+              <p class="text-center">Delete image <span class="glyphicon glyphicon-trash"></p>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <%= f.label :status, "Publish" %>
+      <%= f.check_box :status %>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <%= f.submit "Save", class: "btn btn-primary form-control" %>
+    </div>
+  </div>
+
+<% end %>

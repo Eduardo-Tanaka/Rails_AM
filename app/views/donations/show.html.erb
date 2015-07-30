@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="form-group col-md-12">
+    <h1><%= @donation.title %></h1>
+    <p><%= @donation.description %></p>
+    <p><%= @donation.situation %></P>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <% if @donation.photos %>
+      <% @donation.photos.each do |photo| %>
+        <div class="col-sm-6 col-md-4 thumbnail">
+          <%= link_to (image_tag(photo.image_url(:standard), class:"img-responsive")), photo.image.url %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= render @donation.questions %>
+
+<%= render 'questions/form' %>

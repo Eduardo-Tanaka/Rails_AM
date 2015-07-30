@@ -1,0 +1,20 @@
+# development:
+#   cloud_name: 'hg2bmzyap'
+#   api_key: '812926796697255'
+#   api_secret: '0ggvYORkBEd4ADSBemKU5LjXvqA'
+#
+# production:
+#   cloud_name: 'hg2bmzyap'
+#   api_key: '812926796697255'
+#   api_secret: '0ggvYORkBEd4ADSBemKU5LjXvqA'
+#
+
+development:
+  cloud_name: 'daqy3nyny'
+  api_key: '197163911895695'
+  api_secret: 'FWwGcUw8qUc_BhIAuhnY7An4WdI'
+
+production:
+  cloud_name: 'daqy3nyny'
+  api_key: '197163911895695'
+  api_secret: 'FWwGcUw8qUc_BhIAuhnY7An4WdI'

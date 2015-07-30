@@ -1,0 +1,85 @@
+<%= form_for @person do |f| %>
+  <% if current_user.des_type == "I" %>
+    <div class="row">
+      <div class="col-md-12">
+        <% if @person.errors.any? %>
+          <div class="alert alert-danger">
+            <% @person.errors.full_messages.each do |e| %>
+              <p><%= e %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="form-group col-md-6">
+        <%= f.label :name, t(".name") %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :cpf, t('.cpf') %>
+        <%= f.text_field :cpf, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= f.label :rg, t('.rg') %>
+        <%= f.text_field :rg, class: "form-control" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :birth_date, t('.birth_date') %>
+        <% if @person.birth_date != nil %>
+          <%= f.text_field :birth_date, value: @person.birth_date.strftime("%d/%m/%Y"), class: "form-control datepicker" %>
+        <% else %>
+          <%= f.text_field :birth_date, class: "form-control datepicker" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <%= f.fields_for :phones do |builder| %>
+        <%= render 'phone_fields', f: builder %>
+      <% end %>
+    </div>
+
+    <%= f.fields_for :address do |builder| %>
+      <%= render 'address_fields', f: builder %>
+    <% end %>
+
+  <% else %>
+    <h1>Juridaica</h1>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit t('.save'), class: "btn btn-primary form-control" %>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+        language: "pt-BR",
+        format: 'dd/mm/yyyy'
+      });
+
+      $("#person_cpf").mask("999.999.999-99");
+
+      $("#person_phones_attributes_0_phone").mask("(99) 9999-9999");
+      $("#person_phones_attributes_1_phone").mask("(99) 9999-9999?9");
+
+      $("#person_address_attributes_zipcode").mask("99999-999");
+
+      $("#person_address_attributes_zipcode").on('blur', function() {
+        $.ajax({
+          url: "http://api.postmon.com.br/v1/cep/" + $(this).val(),
+          type: "GET",
+          success: function(data) {
+            $("#person_address_attributes_address").val(data.logradouro.toUpperCase());
+            $("#person_address_attributes_neighborhood").val(data.bairro.toUpperCase());
+            $("#person_address_attributes_city").val(data.cidade.toUpperCase());
+            $("#person_address_attributes_state").val(data.estado.toUpperCase());
+          }
+        })
+      });
+    });
+  </script>
+<% end %>
