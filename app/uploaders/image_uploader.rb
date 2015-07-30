@@ -8,7 +8,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   process :convert => 'jpg'
-  process :tags => ['post_picture']
+  process :tags
+
+  def tags
+      model.donation.category.name
+  end
 
   def public_id
     #Gerar nome aleatorio para a imagem

@@ -8,9 +8,19 @@
       </div>
     <% end %>
   </div>
+
 <%= form_for ([@person, @question.donation, @question, @answer]) do |f| %>
-  <%= f.label :answer %>
-  <%= f.text_area :answer %>
-  <%= f.submit %>
+  <div class="row">
+    <div class="form-group col-md-12">
+      <%= f.label :answer %>
+      <%= f.text_area :answer, rows: 5, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-12">
+      <%= f.submit "Save", class: "btn btn-primary form-control" %>
+    </div>
+  </div>
+
 <% end %>
 </div>

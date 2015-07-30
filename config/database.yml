@@ -10,13 +10,13 @@ default: &default
 
 development:
   <<: *default
-  adapter: sqlite3
-  database: db/development.sqlite3
-  # adapter: postgresql
-  # host: ec2-54-204-26-8.compute-1.amazonaws.com
-  # username: jgzcmfigtonfsc
-  # password: WoeKoVMpHFnwh89UCI7iEClbVm
-  # database: da9qftkoiqenos
+  #adapter: sqlite3
+  #database: db/development.sqlite3
+  adapter: postgresql
+  host: ec2-54-204-26-8.compute-1.amazonaws.com
+  username: jgzcmfigtonfsc
+  password: WoeKoVMpHFnwh89UCI7iEClbVm
+  database: da9qftkoiqenos
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
