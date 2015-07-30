@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>QuemMeQuer</title>
+  <meta name="google-site-verification" content="rKgTjM7SgxaOx4pSDsFk7fb1c2ctN3o6SOdl9kPHAn0" />
+  <title><%= content_for?(:title) ? yield(:title) : "Quem Me Quer" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Quem Me Quer" %>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render '/layouts/header' %>
+  <header>
+    <%= render '/layouts/header' %>
+  </header>
 
   <div class="container">
     <% flash.each do |type, content| %>
@@ -24,7 +28,8 @@
     <%= yield %>
   </div>
 
-  <%= render '/layouts/footer' %>
-
+  <footer>
+    <%= render '/layouts/footer' %>
+  </footer>
 </body>
 </html>
