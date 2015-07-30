@@ -24,6 +24,9 @@ class RegistrationsController < Devise::RegistrationsController
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         Person.create(user_id: User.last.id)
+        Address.create(person_id: User.last.id)
+        Phone.create(person_id: User.last.id)
+        Phone.create(person_id: User.last.id)
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
