@@ -2,7 +2,7 @@
   <h1>HELLO</h1>
   <% @donations.each do |donation| %>
       <% if donation.photos %>
-          <div class="col-sm-4 col-md-3 thumbnail">
+          <div class="col-xs-6 col-sm-3 thumbnail">
             <%= link_to (image_tag(donation.photos[0].image_url(:thumbnail), class:"img-responsive")), person_donation_path(donation.person,donation) %>
           </div>
       <% end %>
