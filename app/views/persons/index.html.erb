@@ -1,9 +1,13 @@
 <div class="row">
   <% @donations.each do |donation| %>
-      <% if donation.photos %>
+      <% if donation.photos.any? %>
           <div class="col-xs-6 col-sm-3 thumbnail">
             <%= link_to (image_tag(donation.photos[0].image_url(:thumbnail), class:"img-responsive")), person_donation_path(donation.person,donation) %>
           </div>
-      <% end %>
+      <% else %>
+      <div class="col-xs-6 col-sm-3 thumbnail">
+        <%= link_to donation.title, person_donation_path(donation.person,donation), class:"img-responsive" %>
+      </div>
+    <% end %>
   <% end %>
 </div>

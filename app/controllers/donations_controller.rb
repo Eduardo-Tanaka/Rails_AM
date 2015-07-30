@@ -6,7 +6,7 @@ class DonationsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def index
-    @donations = @person.donations.all
+    @donations = @person.donations.includes(:photos).all
   end
 
   def new
@@ -17,6 +17,11 @@ class DonationsController < ApplicationController
     @donation = Donation.new(donation_params)
     @donation.person_id = @person.id
     @donation.category_id = params[:donation][:category_id]
+    if @donation.status == '1' && params[:images] == nil
+      @categories = Category.all
+      flash[:alert] = 'Para publicar uma doação é necessário anexar pelo menos 1 foto'
+      return render 'new'
+    end
     if params[:images]
       params[:images].each { |image| @donation.photos.new(image: image) }
     end
@@ -37,14 +42,32 @@ class DonationsController < ApplicationController
   end
 
   def update
-    if @donation.update(donation_params)
-      if params[:images]
-        params[:images].each { |image| @donation.photos.create(image: image) }
+    @donation.attributes = donation_params
+    if params[:images] == nil
+      if @donation.status == '1' && (@donation.photos.count == 0)
+        @categories = Category.all
+        flash[:alert] = 'Para publicar uma doação é necessário anexar pelo menos 1 foto'
+        return render 'edit'
+      else
+        if @donation.save
+          return redirect_to person_donation_path(@person, @donation), notice: "Donation updated"
+        else
+          @categories = Category.all
+          return render 'edit'
+        end
       end
-      redirect_to person_donation_path(@person, @donation), notice: "Donation updated"
     else
-      render 'edit'
+      if @donation.update(donation_params)
+        if params[:images]
+          params[:images].each { |image| @donation.photos.create(image: image) }
+        end
+        return redirect_to person_donation_path(@person, @donation), notice: "Donation updated"
+      else
+        @categories = Category.all
+        return render 'edit'
+      end
     end
+
   end
 
   def destroy
@@ -53,9 +76,14 @@ class DonationsController < ApplicationController
   end
 
   def delete_image
+    if @donation.photos.count == 1 && @donation.status == '1'
+      flash[:alert] = "Não pode deletar todas as fotos se a doação estiver publicada"
+      return render 'edit'
+    end
     photo = Photo.find(params[:format])
+    flash[:notice] = "Image deleted"
     photo.destroy
-    render 'edit', notice: "Image deleted"
+    render 'edit'
   end
 
   private

@@ -1,14 +1,16 @@
 <h1>index</h1>
 <% @donations.each do |donation| %>
   <div class="row">
-      <div class="col-md-3">
-        <%= link_to link_to (image_tag(donation.photos[0].image_url(:thumbnail), class:"img-responsive thumbnail")), person_donation_path(@person,donation) %>
+      <div class="col-sm-3">
+        <% if donation.photos.any? %>
+          <%= link_to link_to (image_tag(donation.photos[0].image_url(:thumbnail), class:"img-responsive thumbnail")), person_donation_path(@person,donation) %>
+        <% end %>
       </div>
-      <div class="col-md-6">
+      <div class="col-sm-6">
         <h1><%= donation.title %></h1>
         <p><%= truncate(donation.description, length: 200) %></p>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <%= link_to "Edit", edit_person_donation_path(@person, donation), class: "btn btn-sm btn-default" %><br>
         <%= link_to "Delete", [@person, donation], method: :delete, data: { confirm: "Delete?" }, class: "btn btn-sm btn-default" %>
       </div>

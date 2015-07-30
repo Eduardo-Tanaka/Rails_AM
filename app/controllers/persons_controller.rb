@@ -4,7 +4,7 @@ class PersonsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @donations = Donation.all.order("created_at DESC").where(status: 1).limit(8)
+    @donations = Donation.includes(:photos).all.order("created_at DESC").where(status: 1).limit(8)
   end
 
   def show
