@@ -1,10 +1,10 @@
 class PersonsController < ApplicationController
 
   before_action :find_user
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:show]
 
   def index
-    @donations = Donation.includes(:photos).all.order("created_at DESC").where(status: 1).limit(8)
+
   end
 
   def show

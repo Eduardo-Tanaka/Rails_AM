@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-2">
+    <p>dsf</p>
+  </div>
+  <div class="col-sm-10">
+    <% @donations.each do |donation| %>
+      <div class="row">
+          <div class="col-sm-4">
+            <% if donation.photos.any? %>
+              <%= link_to link_to (image_tag(donation.photos[0].image_url(:thumbnail), class:"img-responsive thumbnail")), person_donation_path(donation.person,donation) %>
+            <% end %>
+          </div>
+          <div class="col-sm-8">
+            <h1><%= donation.title %></h1>
+            <p><%= truncate(donation.description, length: 200) %></p>
+          </div>
+        </div>
+      <br>
+    <% end %>
+  </div>
+</div>
