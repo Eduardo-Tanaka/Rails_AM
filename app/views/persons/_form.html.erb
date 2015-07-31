@@ -1,16 +1,18 @@
 <%= form_for @person do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <% if @person.errors.any? %>
+        <div class="alert alert-danger">
+          <% @person.errors.full_messages.each do |e| %>
+            <p><%= e %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <% if current_user.des_type == "I" %>
     <div class="row">
-      <div class="col-md-12">
-        <% if @person.errors.any? %>
-          <div class="alert alert-danger">
-            <% @person.errors.full_messages.each do |e| %>
-              <p><%= e %></p>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-
       <div class="form-group col-md-6">
         <%= f.label :name, t(".name") %>
         <%= f.text_field :name, class: "form-control" %>
@@ -35,19 +37,34 @@
         <% end %>
       </div>
     </div>
-    
+  <% else %>
     <div class="row">
-      <%= f.fields_for :phones do |builder| %>
-        <%= render 'phone_fields', f: builder %>
-      <% end %>
+      <div class="form-group col-md-6">
+        <%= f.label :company_name, t(".company_name") %>
+        <%= f.text_field :company_name, class: "form-control" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :cnpj, t(".cnpj") %>
+        <%= f.text_field :cnpj, class: "form-control" %>
+      </div>
     </div>
 
-    <%= f.fields_for :address do |builder| %>
-      <%= render 'address_fields', f: builder %>
-    <% end %>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <%= f.label :trading_name, t('.trading_name') %>
+        <%= f.text_field :trading_name, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
 
-  <% else %>
-    <h1>Juridaica</h1>
+  <div class="row">
+    <%= f.fields_for :phones do |builder| %>
+      <%= render 'phone_fields', f: builder %>
+    <% end %>
+  </div>
+
+  <%= f.fields_for :address do |builder| %>
+    <%= render 'address_fields', f: builder %>
   <% end %>
 
   <div class="form-group">
@@ -63,7 +80,9 @@
 
       $("#person_cpf").mask("999.999.999-99");
 
-      $("#person_phones_attributes_0_phone").mask("(99) 9999-9999");
+      $("#person_cnpj").mask("99.999.999/9999-99");
+
+      $("#person_phones_attributes_0_phone").mask("(99) 9999-9999?9");
       $("#person_phones_attributes_1_phone").mask("(99) 9999-9999?9");
 
       $("#person_address_attributes_zipcode").mask("99999-999");

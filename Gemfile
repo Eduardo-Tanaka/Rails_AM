@@ -19,6 +19,7 @@ gem 'devise', '~> 3.5.1'
 gem 'cloudinary', '~> 1.1.0'
 gem 'bootstrap-datepicker-rails'
 gem 'maskedinput-rails'
+gem "letter_opener", :group => :development
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -26,6 +26,9 @@ en:
       cpf: "CPF"
       rg: "RG"
       birth_date: "Birth Date"
+      company_name: "Company Name"
+      trading_name: "Trading Name"
+      cnpj: "CNPJ"
       save: "Save"
     address_fields:
       zip_code: "Zip Code"
@@ -36,7 +39,7 @@ en:
       city: "City"
       state: "State"
     phone_fields:
-      phone: "Phone" 
+      phone: "Phone"
 
   layouts:
     header:
