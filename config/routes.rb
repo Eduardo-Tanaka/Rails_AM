@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get 'search', to: "homes#search"
+  get 'category', to: "homes#category"
 
   resources :persons do
     resources :donations do

@@ -14,8 +14,6 @@
       <% if current_user %>
         <div class="panel-body">
           <% if question.answer %>
-            <p><%= question.answer.answer %></p>
-            <p><small>Answered <%= time_ago_in_words(question.answer.created_at) %> ago</small></p>
             <%= link_to "Edit", edit_person_donation_question_answer_path(@person, @donation, question, question.answer) %>
             <%= link_to "Delete", person_donation_question_answer_path(@person, @donation, question, question.answer), method: :delete, data: { confirm: "Delete?" } %>
           <% end %>
