@@ -38,7 +38,12 @@ class DonationsController < ApplicationController
   end
 
   def edit
-
+    if current_user.id != @donation.person.id
+      redirect_to 'https://quem-me-quer.herokuapp.com/'
+    else
+      @categories = Category.all
+      @donation
+    end
   end
 
   def update
