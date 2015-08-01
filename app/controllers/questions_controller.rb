@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
 
   def edit
     if current_user.id != @question.person.id
-      redirect_to 'localhost:3000'
+      redirect_to 'https://quem-me-quer.herokuapp.com/'
     else
        @question
     end

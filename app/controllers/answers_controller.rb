@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
 
   def new
     if current_user.id != @question.donation.person.id
-      redirect_to 'localhost:3000'
+      redirect_to 'https://quem-me-quer.herokuapp.com/'
     else
       @answer = Answer.new
     end
@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
 
   def edit
     if current_user.id != @question.donation.person.id
-      redirect_to 'localhost:3000'
+      redirect_to 'https://quem-me-quer.herokuapp.com/'
     else
       @answer
     end
