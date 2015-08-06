@@ -24,7 +24,9 @@ gem 'newrelic_rpm', '~> 3.12.1.298'
 gem 'client_side_validations',
       github: "DavyJonesLocker/client_side_validations",
       branch: "4-2-stable"
-      
+gem 'will_paginate', '~> 3.0.7'
+gem 'jquery-turbolinks', '~> 2.1.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

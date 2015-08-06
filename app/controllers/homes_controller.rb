@@ -12,14 +12,14 @@ class HomesController < ApplicationController
   end
 
   def search
-    @donations = Donation.includes(:photos).where(status: 1).where("title like ? or description like ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    @donations = Donation.includes(:photos).where(status: 1).where("title like ? or description like ?", "%#{params[:search]}%", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 3)
   end
 
   def category
     if params[:category] == nil
-      @donations = Donation.includes(:photos).where(status: 1).where("title like ? or description like ?", "%#{params[:search]}%", "%#{params[:search]}%")
+      @donations = Donation.includes(:photos).where(status: 1).where("title like ? or description like ?", "%#{params[:search]}%", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 3)
     else
-      @donations = Donation.includes(:photos).where(status: 1).where("category_id = ?", "#{params[:category][:category_id]}").where("title like ?", "%#{params[:title]}%")
+      @donations = Donation.includes(:photos).where(status: 1).where("category_id = ?", "#{params[:category][:category_id]}").where("title like ?", "%#{params[:title]}%").paginate(:page => params[:page], :per_page => 3)
     end
     render 'search'
   end
