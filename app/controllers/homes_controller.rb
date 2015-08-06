@@ -4,10 +4,13 @@ class HomesController < ApplicationController
   before_action :find_categories, only: [:search, :category]
 
   def index
-    @donations = Donation.includes(:photos).all.order("created_at DESC").where(status: 1).limit(8)
+    @donations1 = Donation.includes(:photos).all.order("created_at DESC").where(status: 1, category_id: 1).limit(8)
+    @donations2 = Donation.includes(:photos).all.order("created_at DESC").where(status: 1, category_id: 2).limit(8)
+    @donations3 = Donation.includes(:photos).all.order("created_at DESC").where(status: 1, category_id: 3).limit(8)
+
     respond_to do |format|
       format.html { @donations }
-      format.json { render json: @donations }
+      format.json { render json: [@donations1, @donations2, @donations3] }
     end
   end
 

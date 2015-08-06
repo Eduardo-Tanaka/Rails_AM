@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require maskedinput
+//= require owl.carousel
 //= require rails.validations
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker/core

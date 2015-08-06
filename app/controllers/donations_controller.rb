@@ -6,7 +6,7 @@ class DonationsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def index
-    @donations = @person.donations.includes(:photos).all
+    @donations = @person.donations.includes(:photos).all.paginate(:page => params[:page], :per_page => 3)
   end
 
   def new

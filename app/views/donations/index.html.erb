@@ -1,23 +1,28 @@
 <h1>index</h1>
 <% @donations.each do |donation| %>
   <div class="row">
-      <div class="col-sm-3 col-xs-12">
+      <div class="col-sm-3 col-xs-6">
         <% if donation.photos.any? %>
           <%= link_to link_to (image_tag(donation.photos[0].image_url(:thumbnail), class:"img-responsive thumbnail")), person_donation_path(@person,donation) %>
         <% end %>
       </div>
-      <div class="col-sm-7 col-xs-12">
+      <div class="col-sm-7 col-xs-6">
         <h1><%= donation.title %></h1>
         <p><%= truncate(donation.description, length: 200) %></p>
       </div>
       <div class="col-sm-2 col-xs-12">
         <div class="row">
-          <%= link_to "Edit", edit_person_donation_path(@person, donation), class: "btn btn-sm btn-default col-xs-12 col-sm-4" %>
-        </div>
-        <div class="row">
-          <%= link_to "Delete", [@person, donation], method: :delete, data: { confirm: "Delete?" }, class: "btn btn-sm btn-default col-xs-12 col-sm-4" %>
+          <%= link_to "Edit", edit_person_donation_path(@person, donation), class: "btn btn-sm btn-default col-xs-6 col-sm-7" %>
+          <%= link_to "Delete", [@person, donation], method: :delete, data: { confirm: "Delete?" }, class: "btn btn-sm btn-default col-xs-6 col-sm-7" %>
         </div>
       </div>
     </div>
   <br>
 <% end %>
+
+<div class="flickr_pagination">
+  <%= will_paginate @donations, :container => false %>
+  <div class="page_info">
+    <%= page_entries_info @donations %>
+  </div>
+</div>

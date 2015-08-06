@@ -1,17 +1,54 @@
 <h1>Welcome</h1>
 
 <div class="row">
-  <% @donations.each do |donation| %>
-      <% if donation.photos.any? %>
-          <div class="col-xs-6 col-sm-3 thumbnail">
-            <%= link_to (image_tag(donation.photos[0].image_url(:thumbnail), class:"img-responsive")), person_donation_path(donation.person,donation) %>
+  <h3 class="text-center"><%= @donations1[0].category.name %></h3>
+  <div class="owl-carousel">
+    <% @donations1.each do |donation| %>
+        <% if donation.photos.any? %>
+          <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 thumbnail">
+            <%= link_to (image_tag(donation.photos[0].image_url(:index_page, :crop=>:scale), class:"img-responsive")), person_donation_path(donation.person,donation) %>
           </div>
-      <% else %>
-      <div class="col-xs-6 col-sm-3 thumbnail">
-        <%= link_to donation.title, person_donation_path(donation.person,donation), class:"img-responsive" %>
-      </div>
+        <% else %>
+          <div class="col-xs-6 col-sm-3 thumbnail">
+            <%= link_to donation.title, person_donation_path(donation.person,donation), class:"img-responsive" %>
+          </div>
+        <% end %>
     <% end %>
-  <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <h3 class="text-center"><%= @donations2[0].category.name %></h3>
+  <div class="owl-carousel">
+    <% @donations2.each do |donation| %>
+      <% if donation.photos.any? %>
+        <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 thumbnail">
+          <%= link_to (image_tag(donation.photos[0].image_url(:index_page, :crop=>:scale), class:"img-responsive")), person_donation_path(donation.person,donation) %>
+        </div>
+      <% else %>
+        <div class="col-xs-6 col-sm-3 thumbnail">
+          <%= link_to donation.title, person_donation_path(donation.person,donation), class:"img-responsive" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <h3 class="text-center"><%= @donations3[0].category.name %></h3>
+  <div class="owl-carousel">
+    <% @donations3.each do |donation| %>
+      <% if donation.photos.any? %>
+        <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 thumbnail">
+          <%= link_to (image_tag(donation.photos[0].image_url(:index_page, :crop=>:scale), class:"img-responsive")), person_donation_path(donation.person,donation) %>
+        </div>
+      <% else %>
+        <div class="col-xs-6 col-sm-3 thumbnail">
+          <%= link_to donation.title, person_donation_path(donation.person,donation), class:"img-responsive" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class="row" style=margin-top:50px>
@@ -30,3 +67,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(".owl-carousel").owlCarousel({
+    navigation : true, // Show next and prev buttons
+    autoPlay : 3000,
+    stopOnHover : true,
+    slideSpeed : 300,
+    paginationSpeed : 400,
+    singleItem:true
+  });
+</script>

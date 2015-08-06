@@ -31,6 +31,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [350, 350]
   end
 
+  version :index_page do
+    process :resize_to_fill => [950, 450]
+  end
+
   # Choose what kind of storage to use for this uploader:
   #storage :file
   # storage :fog
