@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'search', to: "homes#search"
   get 'category', to: "homes#category"
+  get 'index', to: "homes#index"
+
 
   resources :persons do
     resources :donations do

@@ -9,7 +9,7 @@
     <% end %>
   </div>
 
-<%= form_for ([@person, @question.donation, @question, @answer]) do |f| %>
+<%= form_for([@person, @question.donation, @question, @answer], validate: true) do |f| %>
   <div class="row">
     <div class="form-group col-md-12">
       <%= f.label :answer %>

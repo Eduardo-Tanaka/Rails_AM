@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require maskedinput
+//= require rails.validations
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js

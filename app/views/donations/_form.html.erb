@@ -1,4 +1,4 @@
-<%= form_for([@person, @donation], html: { multipart: true })  do |f| %>
+<%= form_for([@person, @donation], html: { multipart: true }, validate: true)  do |f| %>
   <div class="row">
     <div class="col-md-12">
       <% if @donation.errors.any? %>
@@ -39,7 +39,11 @@
       <!-- Procurar outro jeito de usar o label com radio button -->
       <% i = 1 %>
       <% @categories.each do |category| %>
-        <%= f.radio_button :category_id, category.id %>
+        <% if i == 1 %>
+          <%= f.radio_button :category_id, category.id, checked: true %>
+        <% else %>
+          <%= f.radio_button :category_id, category.id %>
+        <% end %>
         <%= label_tag 'donation_category_id_'+i.to_s, category.name %>
         <% i = i + 1 %>
       <% end %>

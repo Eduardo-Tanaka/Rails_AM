@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/DavyJonesLocker/client_side_validations.git
+  revision: 86b5c93df07b3f04743c86d024fce178bfb073e3
+  branch: 4-2-stable
+  specs:
+    client_side_validations (4.2.0)
+
+GIT
   remote: git://github.com/carrierwaveuploader/carrierwave.git
   revision: 37cf31d34fa411db20e99cc654195020b06202c3
   specs:
@@ -210,6 +217,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.5.1)
   byebug
   carrierwave!
+  client_side_validations!
   cloudinary (~> 1.1.0)
   coffee-rails (~> 4.1.0)
   devise (~> 3.5.1)

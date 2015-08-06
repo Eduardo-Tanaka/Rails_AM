@@ -21,7 +21,10 @@ gem 'bootstrap-datepicker-rails'
 gem 'maskedinput-rails'
 gem "letter_opener", :group => :development
 gem 'newrelic_rpm', '~> 3.12.1.298'
-
+gem 'client_side_validations',
+      github: "DavyJonesLocker/client_side_validations",
+      branch: "4-2-stable"
+      
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

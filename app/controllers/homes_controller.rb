@@ -5,6 +5,10 @@ class HomesController < ApplicationController
 
   def index
     @donations = Donation.includes(:photos).all.order("created_at DESC").where(status: 1).limit(8)
+    respond_to do |format|
+      format.html { @donations }
+      format.json { render json: @donations }
+    end
   end
 
   def search
