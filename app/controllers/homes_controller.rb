@@ -8,9 +8,14 @@ class HomesController < ApplicationController
     @donations2 = Donation.includes(:photos).all.order("created_at DESC").where(status: 1, category_id: 2).limit(8)
     @donations3 = Donation.includes(:photos).all.order("created_at DESC").where(status: 1, category_id: 3).limit(8)
 
+    @donations = Array.new
+    @donations << @donations1
+    @donations << @donations2
+    @donations << @donations3
+
     respond_to do |format|
       format.html { @donations }
-      format.json { render json: [@donations1, @donations2, @donations3] }
+      format.json { render json: @donations }
     end
   end
 
@@ -20,9 +25,9 @@ class HomesController < ApplicationController
 
   def category
     if params[:category] == nil
-      @donations = Donation.includes(:photos).where(status: 1).where("title like ? or description like ?", "%#{params[:search]}%", "%#{params[:search]}%").paginate(:page => params[:page], :per_page => 3)
+      @donations = Donation.includes(:photos).where(status: 1).where("title like ? or description like ?", "%#{params[:title]}%", "%#{params[:title]}%").paginate(:page => params[:page], :per_page => 3)
     else
-      @donations = Donation.includes(:photos).where(status: 1).where("category_id = ?", "#{params[:category][:category_id]}").where("title like ?", "%#{params[:title]}%").paginate(:page => params[:page], :per_page => 3)
+      @donations = Donation.includes(:photos).where(status: 1).where("category_id = ?", "#{params[:category][:category_id]}").where("title like ? or description like ?", "%#{params[:title]}%", "%#{params[:title]}%").paginate(:page => params[:page], :per_page => 3)
     end
     render 'search'
   end

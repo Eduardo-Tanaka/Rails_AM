@@ -5,39 +5,39 @@
 
   <div class="col-sm-3">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#search-options" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         Buscar <span class="glyphicon glyphicon-search"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-
-    <%= form_for :category, url: category_path, method: :get do |f| %>
-      <% i = 1 %>
-      <% @categories.each do |category| %>
+    <div class="collapse navbar-collapse" id="search-options">
+      <%= form_for :category, url: category_path, method: :get do |f| %>
+        <% i = 1 %>
+        <% @categories.each do |category| %>
+          <div class="row">
+            <div class="col-sm-12">
+              <%= f.radio_button :category_id, category.id %>
+              <%= label_tag 'category_category_id_'+i.to_s, category.name %>
+            </div>
+          </div>
+          <% i = i + 1 %>
+        <% end %>
         <div class="row">
-          <div class="col-sm-12">
-            <%= f.radio_button :category_id, category.id %>
-            <%= label_tag 'category_category_id_'+i.to_s, category.name %>
+          <div class="col-sm-12 form-group">
+            <%= text_field_tag(:title, nil, class: "form-control", placeholder: "title/description") %>
           </div>
         </div>
-        <% i = i + 1 %>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <%= f.submit "Search", class: "btn btn-default form-control" %>
+          </div>
+        </div>
       <% end %>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <%= text_field_tag(:title, nil, class: "form-control", placeholder: "title") %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <%= f.submit "Search", class: "btn btn-default form-control" %>
-        </div>
-      </div>
-    <% end %>
+    </div>
   </div>
-  </div>
+
   <div class="col-sm-9">
     <% @donations.each do |donation| %>
       <div class="row">
